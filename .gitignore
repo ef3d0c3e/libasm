@@ -1,0 +1,4 @@
+tests
+compile_commands.json
+libasm.a
+build/
