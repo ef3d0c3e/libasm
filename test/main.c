@@ -10,6 +10,8 @@ void test_calloc(void);
 void test_atoi_base(void);
 void test_list_push_front(void);
 void test_list_size(void);
+void test_list_sort(void);
+void test_simd_memchr(void);
 
 #define run(x) do { printf("%s... ", #x); test_ ## x(); printf("OK\n"); } while (0)
 
@@ -25,4 +27,6 @@ int main(void)
 	run(atoi_base);
 	run(list_push_front);
 	run(list_size);
+	run(list_sort);
+	run(simd_memchr);
 }

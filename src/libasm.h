@@ -35,8 +35,12 @@ typedef struct s_list
 
 void
 ft_list_push_front(t_list** begin_list, void* data);
-
 unsigned int
 ft_list_size(const t_list* begin_list);
+void
+ft_list_sort(t_list** begin_list, int (*cmp)(void));
+
+void*
+ft_simd_memchr(const void* s, int c, size_t n);
 
 #endif // LIBASM_H
