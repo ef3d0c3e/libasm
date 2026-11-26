@@ -36,4 +36,7 @@ typedef struct s_list
 void
 ft_list_push_front(t_list** begin_list, void* data);
 
+unsigned int
+ft_list_size(const t_list* begin_list);
+
 #endif // LIBASM_H

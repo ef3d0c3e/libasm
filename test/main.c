@@ -9,6 +9,7 @@ void test_strdup(void);
 void test_calloc(void);
 void test_atoi_base(void);
 void test_list_push_front(void);
+void test_list_size(void);
 
 #define run(x) do { printf("%s... ", #x); test_ ## x(); printf("OK\n"); } while (0)
 
@@ -23,4 +24,5 @@ int main(void)
 	run(calloc);
 	run(atoi_base);
 	run(list_push_front);
+	run(list_size);
 }
