@@ -25,4 +25,7 @@ ft_write(int fd, const void *buf, size_t count);
 ssize_t
 ft_read(int fd, const void *buf, size_t count);
 
+int
+ft_atoi_base(const char *str, const char *base);
+
 #endif // LIBASM_H
