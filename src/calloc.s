@@ -1,29 +1,29 @@
 global ft_calloc
-
 extern malloc
+extern __errno_location
 
 ft_calloc:
-	; multiply size * count and check overflow
 	mov rax, rdi
-	mul rsi
-	jc .L2
-	; call malloc
+	mul rsi                 ; rdx:rax = n * count
+	jc .overflow
+	push rax                ; save size (also aligns stack to 16)
 	mov rdi, rax
-	push rdi
 	call malloc wrt ..plt
-	pop rdi
-	test rax,rax
-	jz .L2
+	pop rcx                 ; rcx = size, used as the rep counter
+	test rax, rax
+	jz .ret                 ; malloc already set errno
+	mov rdi, rax            ; destination
+	mov rdx, rax            ; keep the pointer to return
+	xor eax, eax            ; al = 0
+	rep stosb
+	mov rax, rdx
+.ret:
+	ret
 
-	; copy bytes
-	xor rcx, rcx
-.L1:
-	cmp rcx, rdi
-	je .L3
-	mov [rax + rcx], BYTE 0
-	add rcx, 1
-	jmp .L1
-.L2:
-	xor rax, rax
-.L3:
+.overflow:
+	sub rsp, 8              ; realign before the call
+	call __errno_location wrt ..plt
+	mov dword [rax], 12     ; ENOMEM
+	add rsp, 8
+	xor eax, eax
 	ret

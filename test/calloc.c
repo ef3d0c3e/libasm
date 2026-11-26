@@ -1,3 +1,4 @@
+#include <errno.h>
 #include <libasm.h>
 
 #include <assert.h>
@@ -10,7 +11,9 @@ test_calloc(void)
 	assert(p1 != NULL);
 	free(p1);
 
+	errno = 0;
 	void *p2 = ft_calloc(0xFFFFFFFF, 0xFFFFFFFF);
+	assert(errno == ENOMEM);
 	assert(p2 == NULL);
 
 	/* Needs memory overcommit
@@ -18,6 +21,5 @@ test_calloc(void)
 	void *p3 = malloc(s);
 	assert(p3 != NULL);
 	free(p3); */
-	
 }
 

@@ -17,7 +17,7 @@ ft_strcmp(const char *s1, const char *s2);
 char*
 ft_strdup(const char*s);
 void*
-ft_calloc(size_t n, size_t count);
+ft_calloc(size_t nmemb, size_t size);
 
 
 ssize_t
